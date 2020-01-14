@@ -1,0 +1,9 @@
+.vscode/
+build/
+*egg-info/
+*pyc
+temp/
+dataset/font_process/font_ttf/
+dataset/font_process/paired_images/
+dataset/font_process/pickled_data/
+*.so

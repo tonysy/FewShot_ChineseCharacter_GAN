@@ -4,7 +4,8 @@ from torch.nn import init
 import functools
 from torch.optim import lr_scheduler
 
-
+from .cat_aware_networks import FontUNetGenerator
+from .font_discriminator import FontNLayerDiscriminator
 ###############################################################################
 # Helper Functions
 ###############################################################################
@@ -141,6 +142,8 @@ def define_G(input_nc, output_nc, ngf, netG, norm='batch', use_dropout=False, in
         net = UnetGenerator(input_nc, output_nc, 7, ngf, norm_layer=norm_layer, use_dropout=use_dropout)
     elif netG == 'unet_256':
         net = UnetGenerator(input_nc, output_nc, 8, ngf, norm_layer=norm_layer, use_dropout=use_dropout)
+    elif netG == 'font_256':
+        net = FontUNetGenerator(input_nc,output_nc,8,cat_embedding_nc=512,ngf=ngf,norm_layer=norm_layer,use_dropout=use_dropout)
     else:
         raise NotImplementedError('Generator model name [%s] is not recognized' % netG)
     return init_net(net, init_type, init_gain, gpu_ids)
@@ -179,6 +182,8 @@ def define_D(input_nc, ndf, netD, n_layers_D=3, norm='batch', init_type='normal'
         net = NLayerDiscriminator(input_nc, ndf, n_layers_D, norm_layer=norm_layer)
     elif netD == 'pixel':     # classify if each pixel is real or fake
         net = PixelDiscriminator(input_nc, ndf, norm_layer=norm_layer)
+    elif netD == 'fontbasic': # Modified from PatchGAN with category loss on discriminator
+        net = FontNLayerDiscriminator(input_nc, ndf, n_layers=3, norm_layer=norm_layer,num_cats=57)
     else:
         raise NotImplementedError('Discriminator model name [%s] is not recognized' % netD)
     return init_net(net, init_type, init_gain, gpu_ids)

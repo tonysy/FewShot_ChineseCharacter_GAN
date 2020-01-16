@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Generate Couplet</title>
+  <link rel="stylesheet" href="//www.mdui.org/source/dist/css/mdui.min.css"/>
+</head>
+<body>
+
+<div class="mdui-container">
+  <div class="mdui-tab mdui-tab-full-width" mdui-tab="options">
+    <a href="{{ url_for('.main_page_couplet') }}" class="mdui-ripple mdui-tab-active">Couplet</a>
+    <a href="{{ url_for('.main_page_create') }}" class="mdui-ripple">Create Font</a>
+    <a href="{{ url_for('.main_page_template') }}" class="mdui-ripple">Template</a>
+  </div>
+</div>
+
+<div class="mdui-container-fluid">
+    <form method="post" action="{{ url_for('.show_couplet') }}">
+        <select name="font" class="mdui-select" mdui-select>
+            {% for font_id, font_name in font_list %}
+            <option value="{{font_id}}">{{font_name}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <div class="mdui-textfield">
+            <label class="mdui-textfield-label">the first line of the couplet</label>
+            <textarea class="mdui-textfield-input" name="first_line"></textarea>
+        </div>
+        <br>
+        <div class="mdui-textfield">
+            <label class="mdui-textfield-label">the second line of the couplet</label>
+            <textarea class="mdui-textfield-input" name="second_line"></textarea>
+        </div>
+        <br>
+        <div class="mdui-textfield">
+            <label class="mdui-textfield-label">horizontal scroll</label>
+            <textarea class="mdui-textfield-input" name="horizontal_scroll"></textarea>
+        </div>
+        <br>
+        <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Generate</button>
+    </form>
+</div>
+
+<script src="//www.mdui.org/source/dist/js/mdui.min.js"></script>
+</body>
+</html>

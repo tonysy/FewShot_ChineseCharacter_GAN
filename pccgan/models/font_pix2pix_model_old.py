@@ -75,6 +75,14 @@ class FontPix2PixModel(BaseModel):
         self.real_B = input['B' if AtoB else 'A'].to(self.device)
         self.image_paths = input['A_paths' if AtoB else 'B_paths']
 
+    def set_input_inference(self, input):
+        AtoB = self.opt.direction == 'AtoB'
+        self.real_A = input['A' if AtoB else 'B'].to(self.device)
+        # self.real_B = input['B' if AtoB else 'A'].to(self.device)
+        # self.image_paths = input['A_paths' if AtoB else 'B_paths']
+        self.font_cat = input['cls_label'].to(self.device)
+        self.cat_embedding = input['cat_emb'].to(self.device)
+        
     def forward(self):
         """Run forward pass; called by both functions <optimize_parameters> and <test>."""
         self.fake_B, encoder_feature_lists = self.netG(self.real_A)  # G(A)

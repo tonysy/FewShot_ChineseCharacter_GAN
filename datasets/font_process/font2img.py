@@ -103,25 +103,25 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
 
-    # label = 0
-    # for root, dirs, files in os.walk(args.fonts_dir):
-    #     for name in files:
-    #         if name.lower().endswith(".ttf") and name.lower() not in ["simsun.ttf", "井柏然体.ttf"]:
-    #             print("%s | %s" % (label, name))
-    #             dst_font = os.path.join(root, name)
+    label = 0
+    for root, dirs, files in os.walk(args.fonts_dir):
+        for name in files:
+            if name.lower().endswith(".ttf") and name.lower() not in ["simsun.ttf", "井柏然体.ttf"]:
+                print("%s | %s" % (label, name))
+                dst_font = os.path.join(root, name)
 
-    #             if args.charset in ['CN', 'JP', 'KR', 'CN_T', 'GB775', 'GB6763']:
-    #                 charset = locals().get("%s_CHARSET" % args.charset)
-    #             else:
-    #                 charset = [c for c in open(args.charset).readline()[:-1]]
+                if args.charset in ['CN', 'JP', 'KR', 'CN_T', 'GB775', 'GB6763']:
+                    charset = locals().get("%s_CHARSET" % args.charset)
+                else:
+                    charset = [c for c in open(args.charset).readline()[:-1]]
 
-    #             if args.shuffle:
-    #                 np.random.shuffle(charset)
-    #             font2img(args.src_font, dst_font, charset, args.char_size,
-    #                      args.canvas_size,
-    #                      args.sample_count, args.sample_dir, label, args.filter)
-    #             label += 1
-    # print("Number of fonts:", label)
+                if args.shuffle:
+                    np.random.shuffle(charset)
+                font2img(args.src_font, dst_font, charset, args.char_size,
+                         args.canvas_size,
+                         args.sample_count, args.sample_dir, label, args.filter)
+                label += 1
+    print("Number of fonts:", label)
 
     # Save as pickled file
-    save_train_valid_data(save_dir=args.save_dir, sample_dir=args.sample_dir, split_ratio=args.split_ratio)
+    # save_train_valid_data(save_dir=args.save_dir, sample_dir=args.sample_dir, split_ratio=args.split_ratio)

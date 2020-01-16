@@ -81,6 +81,14 @@ class FontPix2PixV2Model(BaseModel):
         self.font_cat = input['cls_label'].to(self.device)
         self.cat_embedding = input['cat_emb'].to(self.device)
         
+    def set_input_inference(self, input):
+        AtoB = self.opt.direction == 'AtoB'
+        self.real_A = input['A' if AtoB else 'B'].to(self.device)
+        # self.real_B = input['B' if AtoB else 'A'].to(self.device)
+        # self.image_paths = input['A_paths' if AtoB else 'B_paths']
+        # self.font_cat = input['cls_label'].to(self.device)
+        self.cat_embedding = input['cat_emb'].to(self.device)
+        
     def forward(self):
         """Run forward pass; called by both functions <optimize_parameters> and <test>."""
         # self.fake_B = self.netG(self.real_A)  # G(A)
@@ -105,7 +113,7 @@ class FontPix2PixV2Model(BaseModel):
         # font category loss 
         self.loss_cat_fake = self.criterionCat(cat_pred_fake, self.font_cat)
         self.loss_cat_real = self.criterionCat(cat_pred_real, self.font_cat)
-        self.loss_D_cat = (self.loss_cat_fake+self.loss_cat_real)*0.5*self.lambda_cat_loss 
+        self.loss_D_cat = (self.loss_cat_fake+self.loss_cat_real)*0.5*self.opt.lambda_cat_loss 
 
         # combine loss and calculate gradients
         self.loss_D = (self.loss_D_fake + self.loss_D_real) * 0.5 + self.loss_D_cat
@@ -117,7 +125,7 @@ class FontPix2PixV2Model(BaseModel):
         # First, G(A) should fake the discriminator
         fake_AB = torch.cat((self.real_A, self.fake_B), 1)
 
-        pred_fake = self.netD(fake_AB)
+        pred_fake, cat_pred_fake = self.netD(fake_AB)
         self.loss_G_GAN = self.criterionGAN(pred_fake, True)
         # Second, G(A) = B
         self.loss_G_L1 = self.criterionL1(self.fake_B, self.real_B) * self.opt.lambda_L1

@@ -18,3 +18,7 @@ tools/cat_embedding_train/
 tools/checkpoints/
 tools/debug/
 tools/save/
+tools/duilian
+tools/generate_png/
+datasets/Calligraphy_Processed/
+title_poster/

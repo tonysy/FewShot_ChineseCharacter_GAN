@@ -37,7 +37,7 @@ class TrainOptions(BaseOptions):
 
         ## For font generation optimazition
         
-        parser.add_argument('--lambda_content_loss', type=float, default=1.0, help='coefficient for content loss')
+        parser.add_argument('--lambda_content_loss', type=float, default=10.0, help='coefficient for content loss')
         parser.add_argument('--lambda_cat_loss', type=float, default=1.0, help='coefficient for cat loss')
         
         self.isTrain = True

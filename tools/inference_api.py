@@ -148,7 +148,6 @@ class Inferener(object):
             fc_feats += last_fc_feats.squeeze()#[i]
             fc_feats_num += 1
 
-        import pdb; pdb.set_trace()
         mean_feat = fc_feats / fc_feats_num #.view(-1, 1)
         
         self.cat_embedding_dict[style_key] = mean_feat
@@ -201,54 +200,57 @@ if __name__ == "__main__":
 
 
 
-    """"
-    Add new font style
-    """"
-    # folder = '../datasets/Calligraphy_Processed/'
+    # """"
+    # Add new font style
+    # """"
+    folder = '../datasets/Calligraphy_Processed/'
     
-    # wangxizi_imgs = os.listdir(folder)
-    # wangxizi_imgs = [item for item in wangxizi_imgs if '.jpg' in item]
-    # # import pdb; pdb.set_trace()
-    # img_paths = [os.path.join(folder,item) for item in wangxizi_imgs]
+    wangxizi_imgs = os.listdir(folder)
+    wangxizi_imgs = [item for item in wangxizi_imgs if '.jpg' in item]
+    # import pdb; pdb.set_trace()
+    img_paths = [os.path.join(folder,item) for item in wangxizi_imgs]
 
-    # img_readed = [Image.open(item).convert('RGB') for item in img_paths]
+    img_readed = [Image.open(item).convert('RGB') for item in img_paths]
     
     
-    # true_inferencer.add_new_cats(img_readed,style_key='user1')
+    true_inferencer.add_new_cats(img_readed,style_key='user1')
     
     
     """Generate specific Characters
     """
-    char_list = '人丑无怨屏幕轻闪码上有对象'
+    test_with_specified_chars('user1', char_list = '谷歌机器学习冬令营',prefix='duilian_shang_wangxizi')
+
     import pdb; pdb.set_trace()
-    for i in tqdm(range(57)):
-        test_with_specified_chars(i, char_list,prefix='duilian_shang')
+    # char_list = '人丑无怨屏幕轻闪码上有对象'
+    # import pdb; pdb.set_trace()
+    # for i in tqdm(range(57)):
+    #     test_with_specified_chars(i, char_list,prefix='duilian_shang')
 
 
-        test_with_specified_chars('user1', char_list = '上拜图灵只佑服务可用',prefix='duilian_shang_wangxizi')
+    #     test_with_specified_chars('user1', char_list = '上拜图灵只佑服务可用',prefix='duilian_shang_wangxizi')
 
-        test_with_specified_chars('user1', char_list = '下跪关公但求永不宕机',prefix='duilian_xia_wangxizi')
-
-
-        [test_with_specified_chars(idx, char_list = '上拜图灵只佑服务可用',prefix='duilian_shang_{}'.format(idx)) for idx in range(57)]
-        [test_with_specified_chars(idx, char_list = '下跪关公但求永不宕机',prefix='duilian_xia_{}'.format(idx)) for idx in range(57)]
-
-        [test_with_specified_chars(idx, char_list = '上拜图灵只佑服务可用',prefix='hor_duilian_shang_{}'.format(idx),direction='horizontal') for idx in range(57)]
-        [test_with_specified_chars(idx, char_list = '下跪关公但求永不宕机',prefix='hor_duilian_xia_{}'.format(idx),direction='horizontal') for idx in range(57)]
+    #     test_with_specified_chars('user1', char_list = '下跪关公但求永不宕机',prefix='duilian_xia_wangxizi')
 
 
-        test_with_specified_chars(21, char_list = '风调码顺',prefix='duilian_hangpi_21')
+    #     [test_with_specified_chars(idx, char_list = '上拜图灵只佑服务可用',prefix='duilian_shang_{}'.format(idx)) for idx in range(57)]
+    #     [test_with_specified_chars(idx, char_list = '下跪关公但求永不宕机',prefix='duilian_xia_{}'.format(idx)) for idx in range(57)]
 
-        test_with_specified_chars(21, char_list = '福',prefix='duilian_fu_21')
-
-        test_with_specified_chars(21, char_list = '上拜图灵只佑服务可用',prefix='hor_duilian_shang_21',direction='vertical')
-
-
-        test_with_specified_chars(21, char_list = '下跪关公但求永不宕机',prefix='./duilian/hor_duilian_xia_21',direction='vertical')
+    #     [test_with_specified_chars(idx, char_list = '上拜图灵只佑服务可用',prefix='hor_duilian_shang_{}'.format(idx),direction='horizontal') for idx in range(57)]
+    #     [test_with_specified_chars(idx, char_list = '下跪关公但求永不宕机',prefix='hor_duilian_xia_{}'.format(idx),direction='horizontal') for idx in range(57)]
 
 
-        [test_with_specified_chars(21, char_list = zi,prefix='./duilian/hor_duilian_shang_21_{}'.format(zi),direction='vertical') for zi in ['上','拜','图','灵','只','佑','服','务','可','用']]
+    #     test_with_specified_chars(21, char_list = '风调码顺',prefix='duilian_hangpi_21')
 
-        [test_with_specified_chars(21, char_list = zi,prefix='./duilian/hor_duilian_xia_21_{}'.format(zi),direction='vertical') for zi in ['下','跪','关','公','但','求','永','不','宕','机']]
+    #     test_with_specified_chars(21, char_list = '福',prefix='duilian_fu_21')
 
-        [test_with_specified_chars(21, char_list = zi,prefix='./duilian/hor_heng_xia_21_{}'.format(zi),direction='vertical') for zi in ['风','调','码','顺']]
+    #     test_with_specified_chars(21, char_list = '上拜图灵只佑服务可用',prefix='hor_duilian_shang_21',direction='vertical')
+
+
+    #     test_with_specified_chars(21, char_list = '下跪关公但求永不宕机',prefix='./duilian/hor_duilian_xia_21',direction='vertical')
+
+
+    #     [test_with_specified_chars(21, char_list = zi,prefix='./duilian/hor_duilian_shang_21_{}'.format(zi),direction='vertical') for zi in ['上','拜','图','灵','只','佑','服','务','可','用']]
+
+    #     [test_with_specified_chars(21, char_list = zi,prefix='./duilian/hor_duilian_xia_21_{}'.format(zi),direction='vertical') for zi in ['下','跪','关','公','但','求','永','不','宕','机']]
+
+    #     [test_with_specified_chars(21, char_list = zi,prefix='./duilian/hor_heng_xia_21_{}'.format(zi),direction='vertical') for zi in ['风','调','码','顺']]

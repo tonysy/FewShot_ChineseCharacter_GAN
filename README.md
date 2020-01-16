@@ -44,3 +44,11 @@ bash tools/gan_model_version1.sh
 ### PyQt
 
 ## Acknoledgement
+- Paper
+  - Image-to-Image Translation with Conditional Adversarial Networks
+- Code
+  - https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+- https://github.com/mdbootstrap/Bootstrap-4-templates
+- https://github.com/google/material-design-lite
+- https://github.com/pallets/flask
+

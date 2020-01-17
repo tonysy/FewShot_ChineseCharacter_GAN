@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Create Font</title>
-  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"> -->
   <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
   <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -20,43 +20,23 @@
   </div>
 </div>
 
-<!-- <div class="mdui-container-fluid">
-    <div class="mdui-table-fluid">
-        <table class="mdui-table">
-          <thead>
-            <tr>
-              <th>Font Name</th>
-              <th>Font ID</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for font_id, font_name in font_list %}
-            <tr>
-                <td>{{ font_name }}</td>
-                <td>{{ font_id }}</td>
-                <td>Generated</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-    </div> -->
+<div class="mdui-container-fluid">
 
     <form method="post" enctype=multipart/form-data action="{{ url_for('.handwriting_submit') }}">
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">Font Name</label>
             <textarea class="mdui-textfield-input" name="font_name"></textarea>
         </div>
-        <br>
         
-        <!-- <div class="custom-file mb-3">
-            <input type="file" class="custom-file-input" id="handw_image" name="handw_image">
-            <label class="custom-file-label" for="customFile">Your Handwriting Image (JPG/PNG Only)</label>
-        </div> -->
-        <input type="file" class="form-control-file" id="handw_image" name="handw_image">
-        <!-- <input type="file" name="handw_image"> -->
-        <br>
-        <br>
+        <div>
+          <h4 class="doc-article-title"> Choose Your Handwriting Image </h4>
+          <!-- <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" id="handw_image" name="handw_image">
+              <label class="custom-file-label" for="customFile">Your Handwriting Image (JPG/PNG Only)</label>
+          </div> -->
+          <input type="file" class="form-control-file" id="handw_image" name="handw_image">
+        </div>
+        <br><br>
         <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Create</button>
     </form>
 </div>

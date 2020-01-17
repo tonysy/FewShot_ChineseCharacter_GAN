@@ -17,7 +17,35 @@
 </div>
 
 <div class="mdui-container-fluid">
-    
+  <form enctype=multipart/form-data method="post" action="{{ url_for('.show_template') }}">
+    <h4 class="doc-article-title"> Choose Font </h4>
+    <select name="font" class="mdui-select" mdui-select>
+      {% for font_id, font_name in font_list %}
+      <option value="{{font_id}}">{{font_name}}</option>
+      {% endfor %}
+    </select>
+    <br><br>
+
+    <h4 class="doc-article-title"> Choose Couplet Template </h4>
+    <div>
+    {% for couplet_id, couplet_content in couplet_list %}
+    <label class="mdui-radio">
+      {% if couplet_id == "0" %}
+        <input type="radio" name="couplet_group" value="{{couplet_id}}" checked/>
+      {% else %}
+        <input type="radio" name="couplet_group" value="{{couplet_id}}"/>
+      {% endif %}
+      <i class="mdui-radio-icon"></i>
+      {{couplet_content}}
+    </label>
+    <br>
+    {% endfor %}
+    </div>
+    <br><br>
+
+    <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">Generate</button>  
+  </form>
+  
 </div>
 
 <script src="//www.mdui.org/source/dist/js/mdui.min.js"></script>

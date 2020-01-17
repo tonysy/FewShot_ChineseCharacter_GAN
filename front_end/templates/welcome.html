@@ -31,7 +31,7 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+      <a class="navbar-brand" href="{{ url_for('.welcome') }}" target="_blank">
         <strong>Learn to Write</strong>
       </a>
 
@@ -45,17 +45,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <!-- Left -->
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+        <ul class="navbar-nav">
+          <li class="nav-item">
             <a class="nav-link" href="{{ url_for('.main_page_create') }}">Create
-              <span class="sr-only">(current)</span>
+              <!-- <span class="sr-only">(current)</span> -->
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('.show_couplet') }}" target="_blank">Demo</a>
+            <a class="nav-link" href="{{ url_for('.show_demo') }}" target="_blank">Demo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" target="_blank">Poster</a>
+            <a class="nav-link" href="{{ url_for('.welcome') }}" target="_blank">Poster</a>
           </li>
         </ul>
 
@@ -92,16 +92,6 @@
                 <strong>Learn to Write Like You with a Few Examples</strong>
               </h1>
 
-              <!-- <p>
-                <strong>Best & free guide of responsive web design</strong>
-              </p>
-
-              <p class="mb-4 d-none d-md-block">
-                <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                  written versions
-                  available. Create your own, stunning website.</strong>
-              </p> -->
-
               <a target="_blank" href="{{ url_for('.main_page_couplet')}}" class="btn btn-outline-white btn-lg">Getting Started
                 <!-- <i class="fas fa-graduation-cap ml-2"></i> -->
               </a>
@@ -128,16 +118,6 @@
                 <strong>Learn to Write Like You with a Few Examples</strong>
               </h1>
 
-              <!-- <p>
-                <strong>Best & free guide of responsive web design</strong>
-              </p>
-
-              <p class="mb-4 d-none d-md-block">
-                <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                  written versions
-                  available. Create your own, stunning website.</strong>
-              </p> -->
-
               <a target="_blank" href="{{ url_for('.main_page_couplet')}}" class="btn btn-outline-white btn-lg">Getting Started
                 <!-- <i class="fas fa-graduation-cap ml-2"></i> -->
               </a>
@@ -163,16 +143,6 @@
               <h1 class="mb-4">
                 <strong>Learn to Write Like You with a Few Examples</strong>
               </h1>
-
-              <!-- <p>
-                <strong>Best & free guide of responsive web design</strong>
-              </p>
-
-              <p class="mb-4 d-none d-md-block">
-                <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                  written versions
-                  available. Create your own, stunning website.</strong>
-              </p> -->
 
               <a target="_blank" href="{{ url_for('.main_page_couplet')}}" class="btn btn-outline-white btn-lg">Getting Started
                 <!-- <i class="fas fa-graduation-cap ml-2"></i> -->
@@ -203,7 +173,6 @@
 
   </div>
   <!--/.Carousel Wrapper-->
-
 
   <!-- SCRIPTS -->
   <!-- JQuery -->

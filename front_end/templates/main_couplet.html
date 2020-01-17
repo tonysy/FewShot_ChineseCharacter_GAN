@@ -18,6 +18,7 @@
 
 <div class="mdui-container-fluid">
     <form method="post" action="{{ url_for('.show_couplet') }}">
+      <h4 class="doc-article-title"> Couplet DIY </h4>
         <select name="font" class="mdui-select" mdui-select>
             {% for font_id, font_name in font_list %}
             <option value="{{font_id}}">{{font_name}}</option>
@@ -25,12 +26,12 @@
         </select>
         <br>
         <div class="mdui-textfield">
-            <label class="mdui-textfield-label">the first line of the couplet</label>
+            <label class="mdui-textfield-label">the first line of the couplet (7 characters)</label>
             <textarea class="mdui-textfield-input" name="first_line"></textarea>
         </div>
         <br>
         <div class="mdui-textfield">
-            <label class="mdui-textfield-label">the second line of the couplet</label>
+            <label class="mdui-textfield-label">the second line of the couplet (7 characters)</label>
             <textarea class="mdui-textfield-input" name="second_line"></textarea>
         </div>
         <br>

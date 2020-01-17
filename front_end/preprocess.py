@@ -7,9 +7,9 @@ import requests
 import PIL.Image as Image
 from io import BytesIO
 
-up_num = 7
-down_num = 7
-row_num = 4
+# up_num = 7
+# down_num = 7
+# row_num = 4
 column_ch_size = 135
 row_ch_size = 85
 fu_size = 330
@@ -40,7 +40,7 @@ def couplet_work(img_url_list):
         if IF_TEST:
             image = Image.open(img_url_list[num])
         else:
-            res = requests.get(img_url_list[num])
+            res = requests.get("http://"+ server_address + img_url_list[num])
             image = Image.open(BytesIO(res.content))
         background = print_ch(background, image, L, H, column_ch_size)
         H += column_ch_size
@@ -52,7 +52,7 @@ def couplet_work(img_url_list):
         if IF_TEST:
             image = Image.open(img_url_list[num])
         else:
-            res = requests.get(img_url_list[num])
+            res = requests.get("http://"+ server_address + img_url_list[num])
             image = Image.open(BytesIO(res.content))
         background = print_ch(background, image, L, H, column_ch_size)
         H += column_ch_size
@@ -63,7 +63,7 @@ def couplet_work(img_url_list):
         if IF_TEST:
             image = Image.open(img_url_list[num])
         else:
-            res = requests.get(img_url_list[num])
+            res = requests.get("http://"+ server_address + img_url_list[num])
             image = Image.open(BytesIO(res.content))
         background = print_ch(background, image, L, H, row_ch_size)
         L += row_ch_size
@@ -73,7 +73,7 @@ def couplet_work(img_url_list):
     if IF_TEST:
         image = Image.open(img_url_list[up_num + down_num + row_num])
     else:
-        res = requests.get(img_url_list[up_num + down_num + row_num])
+        res = requests.get("http://"+ server_address + img_url_list[up_num + down_num + row_num])
         image = Image.open(BytesIO(res.content))
     background = print_ch(background, image, L, H, fu_size)
     

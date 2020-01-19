@@ -8,7 +8,7 @@ from google.cloud.vision import types
 from PIL import Image, ImageDraw
 import cv2
 
-from pre_process import binarize
+from pre_process import binarize, is_kanji
 
 
 def draw_boxes(image, bounds, color):
@@ -72,13 +72,16 @@ def render_doc_text(file_in, path_out):
     crop_path = os.path.join(path_out, "crop")
     os.mkdir(crop_path)
     for bound, t in zip(bounds, text):
-        min_x = min(v.x for v in bound.vertices)
-        min_y = min(v.y for v in bound.vertices)
-        max_x = max(v.x for v in bound.vertices)
-        max_y = max(v.y for v in bound.vertices)
-        crop = img[min_y:max_y, min_x:max_x]
-        crop = binarize(crop)
-        cv2.imwrite(os.path.join(crop_path, "{}.jpg".format(t)), crop)
+        if is_kanji(t):
+            min_x = min(v.x for v in bound.vertices)
+            min_y = min(v.y for v in bound.vertices)
+            max_x = max(v.x for v in bound.vertices)
+            max_y = max(v.y for v in bound.vertices)
+            crop = img[min_y:max_y, min_x:max_x]
+            crop = binarize(crop)
+            cv2.imwrite(os.path.join(crop_path, "{}.jpg".format(t)), crop)
+
+    return crop_path
 
 
 if __name__ == "__main__":
